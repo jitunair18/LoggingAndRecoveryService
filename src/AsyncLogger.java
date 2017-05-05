@@ -36,7 +36,7 @@ public class AsyncLogger {
 		try {
 			String toWrite = elem.toString()+"\n";
 			byteswritten += toWrite.getBytes().length;
-			if(byteswritten > 4096){
+			if(byteswritten > 3950){
 				//System.out.println(baos.toByteArray().length);
 				list.add(baos.toByteArray());
 				baos.reset();
@@ -67,10 +67,11 @@ public class AsyncLogger {
 	      public void completed(Integer result, AttachmentObject attachment) {
 			  try{
 			  current+=1;
-			  System.out.println("Asynchronous File Writing......... in Thread:" + Thread.currentThread().getName());
+			  //System.out.println("Asynchronous File Writing......... in Thread:" + Thread.currentThread().getName());
 			  //System.out.println("current:"+current);
        	      if(current<attachment.list.size()){
        		
+       	    	 System.out.println("Bytes flushed to disk:"+ result + " Thread Name:" + Thread.currentThread().getName());
        	    	 attachment.channel.force(true);
 				
 	        /*	 try {

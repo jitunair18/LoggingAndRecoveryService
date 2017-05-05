@@ -52,6 +52,7 @@ public class SyncLogger {
 
 		for(byte[] barr:list){
 			fos.write(barr);
+			System.out.println("Bytes flushed to disk:"+ barr.length + "Thread Name:" + Thread.currentThread().getName() );
 			fos.flush();
 		}
 		fos.close();

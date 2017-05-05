@@ -3,6 +3,7 @@ public class ThreadCoordinatorTest {
 
    public static void main(String args[]) {
 	   
+	   // aSYNCHRONOUS LOGGING = 1, SYNCHRONOUS LOGGING = 0
 	   int loggingmode = 0;
      
       //Kick off transaction thread T1

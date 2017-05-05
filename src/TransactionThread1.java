@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class TransactionThread1 implements Runnable {
 	private Thread t;
@@ -43,6 +44,19 @@ public class TransactionThread1 implements Runnable {
 		logrec2tx1.participantType = 1;
 		logrec2tx1.votingStatus = 0;
 		logentry.add(logrec2tx1);
+		Random rand = new Random();
+		for(int i=0;i<1000;i++){
+			LogRecord logrec = new LogRecord();
+			logrec.transactionId = i;
+			logrec.operationType = "get";
+			logrec.inputParameters = String.valueOf(rand.nextInt(100));
+			logrec.newValue = String.valueOf(rand.nextInt(100));
+			logrec.commitStatus = 1;
+			logrec.participantType = 1;
+			logrec.votingStatus = 1;
+			logrec.transactionSequenceList = new ArrayList<String>(Arrays.asList("a","b","c"));
+			logentry.add(logrec);
+		}
 
 		// 3. call Logging API
 		try {
@@ -54,12 +68,7 @@ public class TransactionThread1 implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		System.out.println("Exiting " + threadName);
 	}
 
